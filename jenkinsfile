@@ -3,15 +3,14 @@ pipeline {
 
     stages {
         stage('Build') {
-            branch_name = ${env.BRANCH_NAME}
             steps {
                 echo 'Building..'
                 script {
                     if (
-                        (${branch_name} != "release-1.0" ) && 
-                        (${branch_name} != "master" ) && 
-                        (${branch_name} != "main" ) &&
-                        (${branch_name} != "cicd" )
+                        (env.BRANCH_NAME != "release-1.0" ) && 
+                        (env.BRANCH_NAME != "master" ) && 
+                        (env.BRANCH_NAME != "main" ) &&
+                        (env.BRANCH_NAME != "cicd" )
                     ) {
                         echo "Llamando trustedci.checkAndMerge()"
                         trustedci.checkAndMerge()
