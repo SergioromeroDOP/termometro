@@ -7,10 +7,10 @@ pipeline {
                 echo 'Building..'
                 script {
                     if (
-                        (BRANCH_NAME != "release-1.0" ) && 
-                        (BRANCH_NAME != "master" ) && 
-                        (BRANCH_NAME != "main" ) &&
-                        (BRANCH_NAME != "cicd" )
+                        ($BRANCH_NAME != "release-1.0" ) && 
+                        ($BRANCH_NAME != "master" ) && 
+                        ($BRANCH_NAME != "main" ) &&
+                        ($BRANCH_NAME != "cicd" )
                     ) {
                         echo "Llamando trustedci.checkAndMerge()"
                         trustedci.checkAndMerge()
