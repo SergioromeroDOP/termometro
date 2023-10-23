@@ -13,7 +13,7 @@ pipeline {
                         (env.BRANCH_NAME != "cicd" )
                     ) {
                         echo "Llamando ci.checkAndMerge()"
-                        ci.checkAndMerge()
+                        // trustedci.checkAndMerge()
                     }
                     // ci.buildImages()
                     /*
