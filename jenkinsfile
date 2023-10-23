@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+                script {
+                    if (
+                        (BRANCH_NAME != "release-1.0" ) && 
+                        (BRANCH_NAME != "master" ) && 
+                        (BRANCH_NAME != "main" ) &&
+                        (BRANCH_NAME != "cicd" )
+                    ) {
+                        echo "Llamando trustedci.checkAndMerge()"
+                        trustedci.checkAndMerge()
+                    }
+                    // ci.buildImages()
+                    /*
+                    deploy.Functions([
+                        "project":  "sha-devops-dev-id",
+                        "dir":      "mocks/functions/python/",
+                    ])
+                    */
+                    /*
+                    deploy.Worlflows([
+                        "project":  "sha-devops-dev-id",
+                        "dir":      "mocks/workflows/",
+                        "location": "us-east1-b",
+                    ])
+                    */
+                    
+                    
+                    // ptest.helloWorld()
+                    // test.buildGo()
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
